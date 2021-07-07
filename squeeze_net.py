@@ -18,9 +18,9 @@ class FireModule(nn.Module):
         e3 = self.relu(e3)
         return torch.cat([e1,e3],dim=1)
 
-class ForwardCNN(nn.Module):
+class SqueezeNet(nn.Module):
     def __init__(self):
-        super(ForwardCNN, self).__init__()
+        super(SqueezeNet, self).__init__()
         self.conv1 = nn.Conv2d(3,96,(7,7),stride=2,padding=3)
         self.pool1 = nn.MaxPool2d((3,3),stride=2,padding=0)
         self.fire1 = FireModule(96,16,64,64)
@@ -33,7 +33,7 @@ class ForwardCNN(nn.Module):
         self.fire7 = FireModule(384,64,256,256)
         self.pool3 = nn.MaxPool2d((3,3),stride=2,padding=0)
         self.fire8 = FireModule(512,64,256,256)
-        self.conv2 = nn.Conv2d(512,1000,(1,1),padding=0)
+        self.conv2 = nn.Conv2d(512,100,(1,1),padding=0)
         self.pool4 = nn.AvgPool2d((13,13))
         self.flatten = nn.Flatten()
         self.relu = nn.ReLU()
@@ -55,6 +55,3 @@ class ForwardCNN(nn.Module):
         x = self.conv2(x+x8)
         x = self.flatten(x)
         return x
-
-model = ForwardCNN().to('cpu')
-print(model)
