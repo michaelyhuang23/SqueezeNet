@@ -5,7 +5,7 @@ class SimpleModel(nn.Module):
     def __init__(self):
         super(SimpleModel, self).__init__()
         self.sequential_convs = nn.Sequential(
-            nn.Conv2d(3,96,(5,5),padding=2),
+            nn.Conv2d(1,96,(5,5),padding=2),
             nn.ReLU(),
             nn.MaxPool2d((2,2),stride=2,padding=0),
             nn.Conv2d(96,48,(1,1)),
@@ -23,7 +23,7 @@ class SimpleModel(nn.Module):
             nn.Flatten(),
             nn.Linear(768,128),
             nn.ReLU(),
-            nn.Linear(128,100)
+            nn.Linear(128,101)
         )
 
     def forward(self, x):
