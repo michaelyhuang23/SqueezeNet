@@ -48,6 +48,7 @@ EPOCH = 50
 minLoss = 1e9
 for epoch in range(EPOCH):
     print(f"training epoch {epoch+1}")
+    model.train()
     train(train_data,model,loss_fn,optimizer)
     model.eval()
     with torch.no_grad():
