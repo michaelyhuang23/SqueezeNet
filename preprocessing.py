@@ -39,7 +39,7 @@ def load_data():
     val_size = int(len(total_dataset)*0.1)
     test_size = len(total_dataset)-train_size-val_size
     train_dataset,val_dataset,test_dataset = random_split(total_dataset, [train_size,val_size,test_size])
-    train_data = DataLoader(train_dataset,batch_size=512,shuffle=True)
-    test_data = DataLoader(test_dataset,batch_size=512,shuffle=True)
-    val_data = DataLoader(val_dataset,batch_size=512,shuffle=True)
+    train_data = DataLoader(train_dataset,batch_size=128,shuffle=True)
+    test_data = DataLoader(test_dataset,batch_size=128,shuffle=True)
+    val_data = DataLoader(val_dataset,batch_size=128,shuffle=True)
     return train_data, val_data, test_data

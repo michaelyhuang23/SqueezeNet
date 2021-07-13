@@ -73,4 +73,4 @@ class SqueezeNet(nn.Module):
         x = self.sigmoid(x)
         x = self.pool6(x)
         x = self.flatten(x)
-        return x
+        return torch.squeeze(x)

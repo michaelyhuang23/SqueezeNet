@@ -17,7 +17,7 @@ def train(dataloader, model, loss_fn, optimizer):
     for batch, (X, y) in enumerate(dataloader):
         X, y = X.to(device), y.to(device)
         # Compute prediction error
-        pred = torch.squeeze(model(X))
+        pred = model(X)
         loss = loss_fn(pred, y)
         # Backpropagation
         optimizer.zero_grad()
@@ -36,7 +36,7 @@ def eval(dataloader, model, loss_fn):
     for batch, (X, y) in enumerate(dataloader):
         X, y = X.to(device), y.to(device)
         # Compute prediction error
-        pred = torch.squeeze(model(X))
+        pred = model(X)
         loss = loss_fn(pred, y).item()
         lossSum += loss
         acc = torch.sum(torch.isclose(torch.floor(pred+0.5),y))/y.shape[-1]
